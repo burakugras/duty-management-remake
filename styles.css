@@ -8,13 +8,13 @@ body {
 }
 
 .container {
-    gap: 10px;
+    row-gap: 10px;
     display: flex;
     flex-direction: column;
     width: 35vh;
     position: relative;
-    margin-top: 5vh;
-    margin: 0 auto;
+
+    margin: 5vh 0 auto;
 }
 
 .warn-div {
@@ -22,7 +22,10 @@ body {
     border-radius: 5px;
     margin-top: 5vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    height: 40px;
 }
 
 .input-form {
@@ -32,13 +35,58 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 15px;
+    max-height: 90px;
+}
 
+.duty-title {
+    margin-bottom: 5px;
+}
+
+.input-form .duty-title {
+    margin: 0;
+}
+
+.left-div {
+    max-width: 220px;
+    width: 100%;
+    text-align: left;
+}
+
+.right-div {
+    max-width: 150px;
+    width: 100%;
+    text-align: right;
+}
+
+.todo-div {
+    display: flex;
+    flex-direction: row;
+    max-width: 300px;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.todo-input {
+    margin-right: 5px;
+    font-style: italic;
+    width: 100%;
+    max-width: 175px;
 }
 
 .duty-container {
     background-color: antiquewhite;
     border-radius: 5px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 25px 10px 25px;
+    /* height: 5%; */
+    row-gap: 0.8rem;
+}
+
+.todo {
+    display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
+    justify-content: space-between;
 }
