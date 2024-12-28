@@ -11,7 +11,7 @@ body {
     row-gap: 10px;
     display: flex;
     flex-direction: column;
-    width: 35vh;
+    width: 40vh;
     position: relative;
 
     margin: 5vh 0 auto;
@@ -67,11 +67,25 @@ body {
     margin-top: 15px;
 }
 
+.create-date {
+    /* margin-left: 0.8rem;
+    padding-left: 0.2rem; */
+    text-align: right;
+    position: relative;
+    font-style: italic;
+}
+
 .todo-input {
     margin-right: 5px;
     font-style: italic;
     width: 100%;
     max-width: 175px;
+}
+
+.progress-status {
+    background-color: rgb(94, 233, 94);
+    width: 12px;
+    height: 12px;
 }
 
 .duty-container {
@@ -89,4 +103,19 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: relative;
+    align-items: center;
+}
+
+
+.todo.-edited .left-div *,
+.todo.-edited .right-div * {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.todo.-edited .left-div .todo-editInput,
+.todo.-edited .right-div .todo-saveBtn {
+    opacity: 1;
+    pointer-events: all;
 }
