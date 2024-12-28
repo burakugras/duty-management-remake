@@ -54,6 +54,7 @@ body {
 }
 
 .right-div {
+    margin-left: 15px;
     max-width: 150px;
     width: 100%;
     text-align: right;
@@ -68,8 +69,7 @@ body {
 }
 
 .create-date {
-    /* margin-left: 0.8rem;
-    padding-left: 0.2rem; */
+    margin-left: 20px;
     text-align: right;
     position: relative;
     font-style: italic;
@@ -82,11 +82,23 @@ body {
     max-width: 175px;
 }
 
+.assist-elements {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .progress-status {
     background-color: rgb(94, 233, 94);
     width: 12px;
     height: 12px;
+    border-radius: 5px;
 }
+
+/* .todo .progress-status {
+    align-items: left;
+} */
 
 .duty-container {
     background-color: antiquewhite;
@@ -102,7 +114,7 @@ body {
 .todo {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     position: relative;
     align-items: center;
 }
