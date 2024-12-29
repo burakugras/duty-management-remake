@@ -11,7 +11,7 @@ body {
     row-gap: 10px;
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    max-width: 35rem;
     width: 100%;
     position: relative;
 
@@ -83,7 +83,7 @@ body {
     max-width: 175px;
 }
 
-.helper-elements {
+.middle-div {
     display: flex;
     flex-direction: row;
     align-items: center;
