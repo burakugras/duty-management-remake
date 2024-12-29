@@ -11,7 +11,8 @@ body {
     row-gap: 10px;
     display: flex;
     flex-direction: column;
-    width: 40vh;
+    max-width: 400px;
+    width: 100%;
     position: relative;
 
     margin: 5vh 0 auto;
@@ -82,7 +83,7 @@ body {
     max-width: 175px;
 }
 
-.assist-elements {
+.helper-elements {
     display: flex;
     flex-direction: row;
     align-items: center;
