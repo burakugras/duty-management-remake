@@ -1,5 +1,5 @@
 
-export function renderTodoDiv(todo) {
+export function renderTodoItem(todo) {
     const todoDiv = document.createElement('div');
     todoDiv.classList.add('todo');
 
@@ -61,5 +61,34 @@ export function renderTodoDiv(todo) {
 
     //Event Listeners
 
+    editBtn.addEventListener('click', () => {
+        checkbox.hidden = true;
+        span.hidden = true;
+        deleteBtn.hidden = true;
+        editBtn.hidden = true;
+        progressStatus.hidden = true;
+        createDateSpan.hidden = true;
+        editInput.hidden = false;
+        editInput.value = todo.description;
+        saveBtn.hidden = false;
+    })
 
+    saveBtn.addEventListener('click', () => {
+        checkbox.hidden = false;
+        span.hidden = false;
+        progressStatus.hidden = false;
+        createDateSpan.hidden = false;
+        deleteBtn.hidden = false;
+        editBtn.hidden = false;
+        saveBtn.hidden = true;
+        //will be continue
+    })
+
+    deleteBtn.addEventListener('click', () => {
+        todoDiv.remove(); // UI remove
+        //will be continue for remove from API
+
+    })
+
+    return todoDiv;
 }

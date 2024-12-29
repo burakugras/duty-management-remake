@@ -1,6 +1,6 @@
 const API_BASE_URL = "https://localhost:44318/api/Duties";
 
-async function getTodosByUserId(userId) {
+export async function getTodosByUserId(userId) {
     const url = `${API_BASE_URL}/GetByUserId?userId${userId}&PageSize=10`;
 
     try {
