@@ -1,3 +1,4 @@
+import { formatDate } from "../utils/formatDate";
 
 export function renderTodoItem(todo) {
     const todoDiv = document.createElement('div');
@@ -30,7 +31,7 @@ export function renderTodoItem(todo) {
 
     const createDateSpan = document.createElement('span');
     createDateSpan.classList.add('create-date');
-    createDateSpan.textContent = todo.createDate; //?
+    createDateSpan.textContent = formatDate(todo.createdDate); //?
 
     middleDiv.appendChild(progressStatus);
     middleDiv.appendChild(createDateSpan);
