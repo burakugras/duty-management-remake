@@ -1,7 +1,7 @@
 const API_BASE_URL = "https://localhost:44318/api/Duties";
 
 export async function getTodosByUserId(userId) {
-    const url = `${API_BASE_URL}/GetByUserId?userId${userId}&PageSize=10`;
+    const url = `${API_BASE_URL}/GetByUserId?userId=${userId}&PageSize=10`;
 
     try {
         const response = await fetch(url, {

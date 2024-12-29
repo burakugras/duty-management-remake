@@ -7,6 +7,7 @@ async function init() {
 
     const container = document.querySelector('.duty-container');
     renderTodoList(container, todos);
+    console.log(todos);
 }
 
 document.addEventListener("DOMContentLoaded", init);
