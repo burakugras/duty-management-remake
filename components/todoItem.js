@@ -81,6 +81,7 @@ export function renderTodoItem(todo) {
         createDateSpan.hidden = false;
         deleteBtn.hidden = false;
         editBtn.hidden = false;
+        editInput.hidden = true;
         saveBtn.hidden = true;
         //will be continue
     })
