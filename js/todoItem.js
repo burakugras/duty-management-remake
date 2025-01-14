@@ -1,4 +1,4 @@
-import { formatDate } from "../utils/formatDate.js";
+import { formatDate } from "./formatDate.js";
 
 export function renderTodoItem(todo) {
     const todoDiv = document.createElement('div');

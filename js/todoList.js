@@ -1,4 +1,4 @@
-import { renderTodoItem } from "./todoItem.js";
+import { renderTodoItem } from "../js/todoItem.js";
 
 export function renderTodoList(container, todos) {
     container.innerHTML = "";

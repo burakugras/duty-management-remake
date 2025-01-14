@@ -5,63 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duty Management Remake</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Task Management Remake</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="/libs/jquery-3.7.1.min.js"></script> 
 </head>
 
 <body>
-    <div class="container">
-        <div class="warn-div">
-            <h4 class="warn-text">Please fill in input box</h4>
+    <div id="task-page">  
+        <div id="task-form">
+            <input type="text" id="task-title" placeholder="Başlık">
+            <textarea id="task-description" placeholder="Açıklama"></textarea>
+            <button id="save-button">Kaydet</button>
         </div>
-        <form class="input-form">
-            <h1 class="duty-title">Put your duty</h1>
-            <div class="todo-div">
-                <input type="text" class="todo-input" placeholder="type here...">
-                <button type="submit" class="input-btn">+</button>
-            </div>
-        </form>
-
-        <div class="duty-container">
-            <div class="todo">
-                <div class="left-div">
-                    <input type="checkbox">
-                    <span type="text">This is a sample</span>
-                    <input hidden type="text" class="todo-editInput">
-                </div>
-                <div class="middle-div">
-                    <div class="progress-status"></div>
-                    <span class="create-date">21.01.2025</span>
-                </div>
-                <div class="right-div">
-                    <button class="todo-deleteBtn">Delete</button>
-                    <button class="todo-editBtn">Edit</button>
-                    <button hidden class="todo-saveBtn">Save</button>
-                </div>
-            </div>
-            <div class="todo">
-                <div class="left-div">
-                    <input type="checkbox">
-                    <span type="text">This is a sample</span>
-                    <input hidden type="text" class="todo-editInput">
-                </div>
-                <div class="middle-div">
-                    <div class="progress-status"></div>
-                    <span class="create-date">21.01.2025</span>
-                </div>
-                <div class="right-div">
-                    <button class="todo-deleteBtn">Delete</button>
-                    <button class="todo-editBtn">Edit</button>
-                    <button hidden class="todo-saveBtn">Save</button>
-                </div>
-            </div>
-
-        </div>
-
-
     </div>
-
-    <script type="module" src="app.js"></script>
+    <script type="module" src="/js/main.js"></script>
 </body>
 
 </html>
