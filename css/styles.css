@@ -83,3 +83,55 @@
     width: 75px;
     align-self: flex-end;
 }
+
+.task-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 400px;
+    border: 1px solid black;
+    margin: 0 auto;
+    margin-top: 5vh;
+
+}
+
+.task-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.span-items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+.button-items {
+    display: flex;
+    gap: 5px;
+}
+
+.button-items button {
+    width: 75px;
+    cursor: pointer;
+    
+}
+
+.button-items .edit-button {
+    
+}
+
+.button-items .delete-button {
+    
+}
+
+.button-items .save-button {
+    
+}
+
+.button-items button:hover {
+    
+}
