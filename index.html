@@ -21,14 +21,14 @@
                 <label id="password-label">Şifre : </label>
                 <input type="password" id="input-password" required>
             </div>
-            <button id="login-button">Giriş Yap</button>
+            <button type="submit" id="login-button">Giriş Yap</button>
         </form>
     </div>
     <div id="task-page">  
-        <div id="task-form">
-            <input type="text" id="task-title" placeholder="Başlık">
-            <textarea id="task-description" placeholder="Açıklama"></textarea>
-            <button id="save-button">Kaydet</button>
+        <form id="task-form">
+            <input type="text" id="task-title" placeholder="Başlık" required>
+            <textarea id="task-desc" placeholder="Açıklama" required></textarea>
+            <button type="submit" id="save-button">Kaydet</button>
         </div>
     </div>
     <div class="task-container" id="task-container">

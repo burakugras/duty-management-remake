@@ -1,5 +1,5 @@
-import { getStatusClass } from "../helpers/getStatusClass";
-import { addTask } from "./services/taskService";
+import { getStatusClass } from "./getStatusClass";
+import { addTask } from "../js/services/taskService";
 
 export const addTaskToDOM = (task, containerId) => {
   const statusClass = getStatusClass(task.status);

@@ -1,4 +1,5 @@
 import { loadTasks } from "../helpers/loadTasks";
+import { createTask } from "../helpers/taskItem";
 import { login } from "./services/authService";
 import { deleteTask } from "./services/taskService";
 
@@ -18,8 +19,8 @@ $(document).ready(function () {
     $("#task-container").hide();
   }
 
-  $("#task-container").on("click", ".delete-button", () => {
-    const taskDiv = $(this).closest(".task-div");
+  $("#task-container").on("click", ".delete-button", (event) => {
+    const taskDiv = $(event.currentTarget).closest(".task-div");
     const taskId = taskDiv.data("id");
     if (confirm("Bu görevi silmek istediğinize emin misiniz?")) {
       deleteTask(taskId)
@@ -30,6 +31,32 @@ $(document).ready(function () {
           console.error("Görev silinirken bir hata oluştu.", err);
         });
     }
+  });
+
+  $("#task-container").on("click", ".edit-button", (event) => {
+    $(event.currentTarget).closest(".task-div").css("opacity", "0.5");
+    
+  });
+
+  $("#task-page").on("submit", "#save-button", (event) => {
+    event.preventDefault();
+    const title = $("#task-title").val().trim();
+    const description = $("#task-desc").val().trim();
+
+    const taskData = {
+      title: title,
+      description: description,
+      status: 1,
+      userId: localStorage.getItem("userId"),
+    };
+
+    createTask(taskData, "task-container")
+      .then(() => {
+        $("#task-form")[0].reset();
+      })
+      .catch((err) => {
+        console.error("Görev eklenirken bir sorun oluştu.", err);
+      });
   });
 
   $("#login-form").on("submit", (event) => {
