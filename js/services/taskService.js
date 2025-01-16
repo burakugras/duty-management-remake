@@ -1,15 +1,15 @@
+import { DEFAULT_PAGE_OPTIONS } from "../../constants/pageOptions";
 import { API_BASE_URL } from "../environment";
 
 const TASKS_API_BASE_URL = `${API_BASE_URL}/Duties`;
 
-export const fetchTaks = (pageIndex = 0, pageSize = 5) => {
+export const fetchTaks = (options = DEFAULT_PAGE_OPTIONS) => {
   return $.ajax({
     url: `${TASKS_API_BASE_URL}/GetAll`,
     method: "GET",
     dataType: "json",
     data: {
-      PageIndex: pageIndex,
-      PageSize: pageSize,
+      ...options,
     },
   });
 };
@@ -47,15 +47,14 @@ export const getTaskById = (taskId) => {
   });
 };
 
-export const getTasksByUserId = (userId, pageIndex = 0, pageSize = 5) => {
+export const getTasksByUserId = (userId, options = DEFAULT_PAGE_OPTIONS) => {
   return $.ajax({
     url: `${TASKS_API_BASE_URL}/GetByUserId`,
     method: "GET",
     dataType: "json",
     data: {
       UserId: userId,
-      PageIndex: pageIndex,
-      PageSize: pageSize,
+      ...options,
     },
   });
 };
