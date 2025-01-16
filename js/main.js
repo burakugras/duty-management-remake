@@ -6,7 +6,9 @@ import { deleteTask, updateTask } from "./services/taskService.js";
 
 $(document).ready(function () {
   const authToken = localStorage.getItem("authToken");
+  //   console.log("burada userId henüz yüklenmedi");
   const userId = localStorage.getItem("userId");
+  //   console.log("burada userId yüklendi : ", userId);
 
   if (authToken && userId) {
     $("#login-page").hide();
@@ -118,7 +120,6 @@ $(document).ready(function () {
     }
   });
 
-
   $("#login-form").on("submit", (event) => {
     event.preventDefault();
 
@@ -129,6 +130,7 @@ $(document).ready(function () {
       .then((response) => {
         localStorage.setItem("authToken", response.token);
         localStorage.setItem("userId", response.userId);
+        console.log("login yanıtı : ", response);
 
         $("#login-page").hide();
         $("#task-page").show();

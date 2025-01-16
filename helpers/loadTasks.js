@@ -3,7 +3,9 @@ import { addTaskToDOM } from "./taskItem.js";
 
 export const loadTasks = (userId, containerId) => {
   return getTasksByUserId(userId)
-    .then((tasks) => {
+    .then((response) => {
+      const tasks = response.items;
+
       tasks.forEach((task) => {
         addTaskToDOM(task, containerId);
       });
