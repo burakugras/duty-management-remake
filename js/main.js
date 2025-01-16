@@ -1,7 +1,8 @@
+import { getStatusClass } from "../helpers/getStatusClass";
 import { loadTasks } from "../helpers/loadTasks";
 import { createTask } from "../helpers/taskItem";
 import { login } from "./services/authService";
-import { deleteTask } from "./services/taskService";
+import { deleteTask, updateTask } from "./services/taskService";
 
 $(document).ready(function () {
   const authToken = localStorage.getItem("authToken");
@@ -33,31 +34,90 @@ $(document).ready(function () {
     }
   });
 
+  let editingTaskId = null;
   $("#task-container").on("click", ".edit-button", (event) => {
-    $(event.currentTarget).closest(".task-div").css("opacity", "0.5");
-    
+    const taskDiv = $(event.currentTarget).closest(".task-div");
+    const taskId = taskDiv.data("id");
+    const title = taskDiv.find(".title-span").text().trim();
+    const description = taskDiv.find(".description-label").text().trim();
+    const statusClass = taskDiv
+      .find(".status-icon")
+      .attr("class")
+      .split(" ")
+      .pop();
+
+    let status = 1;
+    if (statusClass === "status-in-progress") status = 2;
+    else if (statusClass === "status-completed") status = 3;
+
+    taskDiv.css("opacity", "0.5");
+
+    $("#task-title").val(title);
+    $("#task-desc").val(description);
+    $("#task-status").val(status);
+
+    editingTaskId = taskId;
   });
 
-  $("#task-page").on("submit", "#save-button", (event) => {
+  $("#task-form").on("submit", (event) => {
     event.preventDefault();
+
     const title = $("#task-title").val().trim();
     const description = $("#task-desc").val().trim();
+    const status = $("#task-status").val();
 
-    const taskData = {
-      title: title,
-      description: description,
-      status: 1,
-      userId: localStorage.getItem("userId"),
-    };
+    if (!title || !description) {
+      console.log("Title veya Description alanı boş bırakılamaz.");
+      return;
+    }
 
-    createTask(taskData, "task-container")
-      .then(() => {
-        $("#task-form")[0].reset();
-      })
-      .catch((err) => {
-        console.error("Görev eklenirken bir sorun oluştu.", err);
-      });
+    if (editingTaskId) {
+      const taskData = {
+        id: editingTaskId,
+        title: title,
+        description: description,
+        status: parseInt(status, 10),
+        userId: localStorage.getItem("userId"),
+      };
+
+      updateTask(taskData)
+        .then((updatedTask) => {
+          const taskDiv = $(`#task-container [data-id="${updatedTask.id}"]`);
+          taskDiv.find(".title-span").text(updatedTask.title);
+          taskDiv.find(".description-label").text(updatedTask.description);
+
+          const statusClass = getStatusClass(updatedTask.status);
+          taskDiv
+            .find(".status-icon")
+            .attr("class", `status-icon ${statusClass}`);
+          taskDiv.css("opacity", "1");
+
+          $("#task-form")[0].reset();
+          editingTaskId = null;
+
+          console.log("Görev güncellendi.");
+        })
+        .catch((err) => {
+          console.error("Görev güncellenirken bir hata oluştu.", err);
+        });
+    } else {
+      const taskData = {
+        title: title,
+        description: description,
+        status: 1,
+        userId: localStorage.getItem("userId"),
+      };
+
+      createTask(taskData, "task-container")
+        .then(() => {
+          $("#task-form")[0].reset();
+        })
+        .catch((err) => {
+          console.error("Görev eklenirken bir sorun oluştu.", err);
+        });
+    }
   });
+
 
   $("#login-form").on("submit", (event) => {
     event.preventDefault();
