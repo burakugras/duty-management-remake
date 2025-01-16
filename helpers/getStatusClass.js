@@ -1,4 +1,4 @@
-import { DutyStatus } from "../constants/constants";
+import { DutyStatus } from "../constants/constants.js";
 
 export const getStatusClass = (status) => {
   switch (status) {

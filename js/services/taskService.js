@@ -1,5 +1,5 @@
-import { DEFAULT_PAGE_OPTIONS } from "../../constants/pageOptions";
-import { API_BASE_URL } from "../environment";
+import { DEFAULT_PAGE_OPTIONS } from "../../constants/pageOptions.js";
+import { API_BASE_URL } from "../environment.js";
 
 const TASKS_API_BASE_URL = `${API_BASE_URL}/Duties`;
 

@@ -1,8 +1,8 @@
-import { getStatusClass } from "../helpers/getStatusClass";
-import { loadTasks } from "../helpers/loadTasks";
-import { createTask } from "../helpers/taskItem";
-import { login } from "./services/authService";
-import { deleteTask, updateTask } from "./services/taskService";
+import { getStatusClass } from "../helpers/getStatusClass.js";
+import { loadTasks } from "../helpers/loadTasks.js";
+import { createTask } from "../helpers/taskItem.js";
+import { login } from "./services/authService.js";
+import { deleteTask, updateTask } from "./services/taskService.js";
 
 $(document).ready(function () {
   const authToken = localStorage.getItem("authToken");

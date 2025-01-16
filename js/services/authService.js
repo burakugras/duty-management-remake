@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "../environment";
+import { API_BASE_URL } from "../environment.js";
 
 const AUTH_API_BASE_URL = `${API_BASE_URL}/Auth`;
 

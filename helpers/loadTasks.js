@@ -1,5 +1,5 @@
-import { getTasksByUserId } from "../js/services/taskService";
-import { addTaskToDOM } from "./taskItem";
+import { getTasksByUserId } from "../js/services/taskService.js";
+import { addTaskToDOM } from "./taskItem.js";
 
 export const loadTasks = (userId, containerId) => {
   return getTasksByUserId(userId)
