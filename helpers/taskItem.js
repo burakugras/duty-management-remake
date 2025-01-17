@@ -19,16 +19,16 @@ export const addTaskToDOM = (task, containerId) => {
     </div>
   `;
 
-  $(`#${containerId}`).append(taskHTML);
+  $(`#${containerId}`).prepend(taskHTML);
 };
 
 export const createTask = (taskData, containerId) => {
   return addTask(taskData)
     .then((response) => {
-      console.log("Task veri tabanına kaydedildi.", response); //burası değişecek.
+      console.log("Task veri tabanına kaydedildi.", response);
       addTaskToDOM(response, containerId);
     })
     .catch((err) => {
-      console.error("Task oluşturulurken bir hata meydana geldi.", err); // burası da değişecek.
+      console.error("Task oluşturulurken bir hata meydana geldi.", err);
     });
 };
