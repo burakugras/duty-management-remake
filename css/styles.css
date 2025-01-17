@@ -183,8 +183,21 @@
   flex-direction: row;
   justify-content: center;
   gap: 30px;
-  cursor: pointer;
   padding-bottom: 10px;
+}
+
+#back-arrow {
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+#next-arrow {
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .logout-div {

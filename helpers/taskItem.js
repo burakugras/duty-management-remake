@@ -19,7 +19,7 @@ export const addTaskToDOM = (task, containerId) => {
     </div>
   `;
 
-  $(`#${containerId}`).prepend(taskHTML);
+  $(`#${containerId}`).append(taskHTML);
 };
 
 export const createTask = (taskData, containerId) => {

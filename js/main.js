@@ -6,22 +6,46 @@ import { deleteTask, updateTask } from "./services/taskService.js";
 
 $(document).ready(function () {
   const authToken = localStorage.getItem("authToken");
-  //   console.log("burada userId henüz yüklenmedi");
   const userId = localStorage.getItem("userId");
-  //   console.log("burada userId yüklendi : ", userId);
+
+  let currentPage = 0;
+  const pageSize = 5;
+
+  function loadTasksWithPagination(userId, containerId) {
+    const verifiedUserId = userId || localStorage.getItem("userId");
+    if (!verifiedUserId) {
+      console.error("Kullanıcı ID'si eksik!");
+      return;
+    }
+    loadTasks(verifiedUserId, containerId, currentPage, pageSize);
+  }
+
+  $("#next-arrow").on("click", () => {
+    currentPage += 1;
+    loadTasksWithPagination(userId, "task-container");
+  });
+
+  $("#back-arrow").on("click", () => {
+    if (currentPage > 0) {
+      currentPage -= 1;
+      loadTasksWithPagination(userId, "task-container");
+    }
+  });
 
   if (authToken && userId) {
     $("#login-page").hide();
     $("#task-page").show();
     $("#task-container").show();
     $("#logout-button").show();
+    $(".pagination-div").show();
 
-    loadTasks(userId, "task-container");
+    loadTasksWithPagination(userId, "task-container");
   } else {
     $("#login-page").show();
     $("#task-page").hide();
     $("#task-container").hide();
     $("#logout-button").hide();
+    $(".pagination-div").hide();
   }
 
   $("#task-container").on("click", ".delete-button", (event) => {
@@ -151,16 +175,21 @@ $(document).ready(function () {
 
     login({ email, password })
       .then((response) => {
+        if (!response.userId) {
+          console.error("Login yanıtında userId bulunamadı!");
+          return;
+        }
         localStorage.setItem("authToken", response.token);
         localStorage.setItem("userId", response.userId);
-        console.log("login yanıtı : ", response);
 
         $("#login-page").hide();
         $("#task-page").show();
         $("#task-container").show();
-
-        loadTasks(response.userId, "task-container");
+        $(".pagination-div").show();
         $("#logout-button").show();
+
+        console.log("Login sonrası userId:", response.userId);
+        loadTasksWithPagination(response.userId, "task-container");
       })
       .catch((err) => {
         console.error("Giriş yaparken bir hata oluştu", err);
