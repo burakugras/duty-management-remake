@@ -55,6 +55,7 @@ $(document).ready(function () {
     else if (statusClass === "status-completed") status = 3;
 
     taskDiv.css("opacity", "0.5");
+    $(event.currentTarget).closest(".button-items").css("visibility", "hidden");
 
     $("#task-title").val(title);
     $("#task-desc").val(description);
@@ -72,7 +73,6 @@ $(document).ready(function () {
     const userId = localStorage.getItem("userId");
 
     console.log(statusInput);
-
 
     if (!title || !description) {
       console.log("Title veya Description alanı boş bırakılamaz.");
@@ -107,6 +107,7 @@ $(document).ready(function () {
             .attr("class", `status-icon ${statusClass}`);
 
           taskDiv.css("opacity", "1");
+          taskDiv.find(".button-items").css("visibility", "visible");
 
           $("#task-form")[0].reset();
           console.log(

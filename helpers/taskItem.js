@@ -15,7 +15,6 @@ export const addTaskToDOM = (task, containerId) => {
       <div class="button-items">
         <button class="edit-button"></button>
         <button class="delete-button"></button>
-        <button class="save-button"></button>
       </div>
     </div>
   `;
@@ -27,7 +26,7 @@ export const createTask = (taskData, containerId) => {
   return addTask(taskData)
     .then((response) => {
       console.log("Task veri tabanına kaydedildi.", response); //burası değişecek.
-      addTaskToDOM(taskData, containerId);
+      addTaskToDOM(response, containerId);
     })
     .catch((err) => {
       console.error("Task oluşturulurken bir hata meydana geldi.", err); // burası da değişecek.
