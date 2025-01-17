@@ -14,12 +14,14 @@ $(document).ready(function () {
     $("#login-page").hide();
     $("#task-page").show();
     $("#task-container").show();
+    $("#logout-button").show();
 
     loadTasks(userId, "task-container");
   } else {
     $("#login-page").show();
     $("#task-page").hide();
     $("#task-container").hide();
+    $("#logout-button").hide();
   }
 
   $("#task-container").on("click", ".delete-button", (event) => {
@@ -66,21 +68,32 @@ $(document).ready(function () {
 
     const title = $("#task-title").val().trim();
     const description = $("#task-desc").val().trim();
-    const status = $("#task-status").val();
+    const statusInput = $("#task-status").val();
+    const userId = localStorage.getItem("userId");
+
+    console.log(statusInput);
+
 
     if (!title || !description) {
       console.log("Title veya Description alanı boş bırakılamaz.");
       return;
     }
 
+    console.log(
+      "if içerisinde editingTaskId değerini kontrol etmeden hemen önce",
+      editingTaskId
+    );
+
     if (editingTaskId) {
       const taskData = {
         id: editingTaskId,
         title: title,
         description: description,
-        status: parseInt(status, 10),
-        userId: localStorage.getItem("userId"),
+        status: statusInput,
+        userId: parseInt(userId, 10),
       };
+
+      console.log("userId during update : ", taskData);
 
       updateTask(taskData)
         .then((updatedTask) => {
@@ -88,14 +101,23 @@ $(document).ready(function () {
           taskDiv.find(".title-span").text(updatedTask.title);
           taskDiv.find(".description-label").text(updatedTask.description);
 
-          const statusClass = getStatusClass(updatedTask.status);
+          const statusClass = getStatusClass(updatedTask.status); // ?
           taskDiv
             .find(".status-icon")
             .attr("class", `status-icon ${statusClass}`);
+
           taskDiv.css("opacity", "1");
 
           $("#task-form")[0].reset();
+          console.log(
+            "if içerisinde editingTaskId değerini kontrol etmeden hemen önce son : ",
+            editingTaskId
+          );
           editingTaskId = null;
+          console.log(
+            "if içerisinde editingTaskId değerini kontrol etmeden hemen sonra",
+            editingTaskId
+          );
 
           console.log("Görev güncellendi.");
         })
@@ -137,9 +159,16 @@ $(document).ready(function () {
         $("#task-container").show();
 
         loadTasks(response.userId, "task-container");
+        $("#logout-button").show();
       })
       .catch((err) => {
         console.error("Giriş yaparken bir hata oluştu", err);
       });
+  });
+
+  $("#logout-button").on("click", function () {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userId");
+    window.location.href = "";
   });
 });
