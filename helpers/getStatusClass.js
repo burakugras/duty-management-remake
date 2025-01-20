@@ -2,13 +2,13 @@ import { DutyStatus } from "../constants/constants.js";
 
 export const getStatusClass = (status) => {
   switch (status) {
-    case DutyStatus.New:
+    case "New":
       return "status-new";
-    case DutyStatus.InProgress:
+    case "InProgress":
       return "status-in-progress";
-    case DutyStatus.Completed:
+    case "Completed":
       return "status-completed";
     default:
-      return "";
+      return "status-new";
   }
 };

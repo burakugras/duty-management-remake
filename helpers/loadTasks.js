@@ -4,7 +4,7 @@ import { addTaskToDOM } from "./taskItem.js";
 export const loadTasks = (userId, containerId, pageIndex = 0, pageSize = 5) => {
   return getTasksByUserId(userId, { PageIndex: pageIndex, PageSize: pageSize })
     .then((response) => {
-      const tasks = response.items.sort((a, b) => new Date(a.createdDate) - new Date(b.createdDate));
+      const tasks = response.items;
 
       // console.log(response);
 

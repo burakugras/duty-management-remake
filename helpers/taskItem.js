@@ -3,11 +3,14 @@ import { addTask } from "../js/services/taskService.js";
 
 export const addTaskToDOM = (task, containerId) => {
   const statusClass = getStatusClass(task.status);
+  console.log(statusClass);
   const taskHTML = `
     <div class="task-div" data-id="${task.id}">
       <div class="span-items">
         <span class="title-span">${task.title}</span>
-        <span class="description-label">${task.description}</span>
+        <span class="description-label" style="text-decoration: ${
+          task.status === "Completed" ? "line-through" : "none"
+        }">${task.description}</span>
       </div>
       <div class="status-item">
         <div class="status-icon ${statusClass}"></div>

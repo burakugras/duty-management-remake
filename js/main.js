@@ -88,6 +88,45 @@ $(document).ready(function () {
     editingTaskId = taskId;
   });
 
+  $("#task-container").on("click", ".description-label", (event) => {
+    const taskDiv = $(event.currentTarget).closest(".task-div");
+    const taskId = taskDiv.data("id");
+    const title = taskDiv.find(".title-span").text().trim();
+    const description = $(event.currentTarget).text().trim();
+    const userId = localStorage.getItem("userId");
+
+    const isCompleted = taskDiv
+      .find(".status-icon")
+      .hasClass("status-completed");
+
+    const newStatus = isCompleted ? 1 : 3;
+    const newDecoration = isCompleted ? "none" : "line-through";
+    const newStatusClass = isCompleted ? "status-new" : "status-completed";
+
+    $(event.currentTarget).css({
+      "text-decoration": newDecoration,
+    });
+
+    const taskData = {
+      id: taskId,
+      title: title,
+      description: description,
+      status: newStatus,
+      userId: parseInt(userId, 10),
+    };
+
+    updateTask(taskData)
+      .then(() => {
+        console.log("Görev başarıyla güncellendi.");
+        taskDiv
+          .find(".status-icon")
+          .attr("class", `status-icon ${newStatusClass}`);
+      })
+      .catch((err) => {
+        console.error("Görev güncellenirken bir hata oluştu.", err);
+      });
+  });
+
   $("#task-form").on("submit", (event) => {
     event.preventDefault();
 
